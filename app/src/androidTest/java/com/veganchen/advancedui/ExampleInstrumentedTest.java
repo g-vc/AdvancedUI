@@ -1,4 +1,4 @@
-package com.veganchen.carouselview;
+package com.veganchen.advancedui;
 
 import android.content.Context;
 

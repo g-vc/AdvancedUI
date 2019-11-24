@@ -1,4 +1,4 @@
-package com.veganchen.carouselview;
+package com.veganchen.advancedui;
 
 import org.junit.Test;
 
