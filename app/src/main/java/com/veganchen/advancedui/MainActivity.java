@@ -1,4 +1,4 @@
-package com.veganchen.carouselview;
+package com.veganchen.advancedui;
 
 import android.os.Bundle;
 import android.util.Log;
