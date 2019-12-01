@@ -1,5 +1,7 @@
 package com.veganchen.advancedui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
     private ViewPager vp;
     private List<View> viewList = new ArrayList<>();
+
+    public static void start(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         int mPosition;
         private int mSize;
 
-        CarouselPageChangeListener(int size){
+        CarouselPageChangeListener(int size) {
             mSize = size;
         }
 
@@ -143,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void transformPage(@NonNull View page, float position) {
-            if(position <= -1 || position >=1){
+            if (position <= -1 || position >= 1) {
                 page.setScaleY(scale);
             } else {
-                if(position == 0){
+                if (position == 0) {
                     page.setScaleY(1f);
                 } else {
                     float finalScale = 1f - 0.2f * Math.abs(position);

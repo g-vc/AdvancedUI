@@ -10,10 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".download.DownloadActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
         <activity
-            android:name=".dragwidget.DragActivity"
+            android:name=".HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -22,6 +20,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".gridview.GridActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".dragwidget.DragActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".download.DownloadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

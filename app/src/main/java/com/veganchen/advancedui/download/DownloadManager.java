@@ -80,17 +80,25 @@ public class DownloadManager {
         }
     }
 
-    public void download(final String url, final String filePath, final DownloadCallback callback) {
+    public void download(final String url, int progress, long total, final String filePath, final DownloadCallback callback) {
         Single.create(new SingleOnSubscribe<Boolean>() {
             @Override
             public void subscribe(SingleEmitter<Boolean> emitter) throws Exception {
                 OkHttpClient client = OkHttpManager.getInstance().getOkHttpClient();
-                Request request = new Request.Builder()
-                        .url(url)
-                        .build();
+                Request.Builder builder = new Request.Builder()
+                        .url(url);
+                if(progress > 0){
+                    builder.addHeader("Range", "bytes=" + progress + "-" + total);
+                }
+                Request request = builder.build();
                 Call call = client.newCall(request);
                 addCall(url, call);
                 Response response = call.execute();
+
+                if(response.code() >= 400){
+                    callback.onFail();
+                    return;
+                }
                 File file = new File(filePath);
                 File parent = file.getParentFile();
                 if (!parent.exists()) {
@@ -104,6 +112,7 @@ public class DownloadManager {
                 byte[] buffer = new byte[1024];
                 int len = 0;
                 try {
+                    fos = new FileOutputStream(file);
                     while ((len = bis.read(buffer)) != -1){
                         fos.write(buffer, 0, len);
                         callback.onProgress(len, total);

@@ -1,13 +1,17 @@
 package com.veganchen.advancedui.dragwidget;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,11 +26,18 @@ import com.veganchen.advancedui.util.ScreenUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DragActivity extends AppCompatActivity {
+public class DragActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView rv;
     private DragAdapter mDragAdapter;
     private ItemTouchHelper itemTouchHelper;
+    private TextView tvChange;
+    private GridLayoutManager manager;
+
+    public static void start(Context context){
+        Intent intent = new Intent(context, DragActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,8 +47,10 @@ public class DragActivity extends AppCompatActivity {
     }
 
     private void init(){
+        tvChange = findViewById(R.id.tvChange);
+        tvChange.setOnClickListener(this);
         rv = findViewById(R.id.rv);
-        GridLayoutManager manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        manager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
         rv.setLayoutManager(manager);
         List<DragBean> dataList = new ArrayList<>();
@@ -46,6 +59,7 @@ public class DragActivity extends AppCompatActivity {
             bean.setText("text" + i);
             dataList.add(bean);
         }
+        rv.setItemAnimator(new DefaultItemAnimator());
         mDragAdapter = new DragAdapter(dataList);
         rv.setAdapter(mDragAdapter);
         itemTouchHelper = new ItemTouchHelper(new DragItemTouchCallback(mDragAdapter));
@@ -60,6 +74,16 @@ public class DragActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(manager.getSpanCount() == 2){
+            manager.setSpanCount(4);
+        } else {
+            manager.setSpanCount(2);
+        }
+        mDragAdapter.notifyDataSetChanged();
     }
 
     private static class DragItemDecoration extends RecyclerView.ItemDecoration{
