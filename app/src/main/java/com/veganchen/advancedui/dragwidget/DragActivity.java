@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,7 +20,7 @@ import com.veganchen.advancedui.dragwidget.adapter.DragAdapter;
 import com.veganchen.advancedui.dragwidget.adapter.DragItemTouchCallback;
 import com.veganchen.advancedui.dragwidget.adapter.RecyclerViewItemClickListener;
 import com.veganchen.advancedui.dragwidget.bean.DragBean;
-import com.veganchen.advancedui.util.ScreenUtil;
+import com.veganchen.advancedui.sdk.util.ScreenUtil;
 
 import java.util.ArrayList;
 import java.util.List;

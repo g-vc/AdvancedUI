@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.veganchen.advancedui.R;
 import com.veganchen.advancedui.download.inter.DownloadCallback;
-import com.veganchen.advancedui.util.CandyUtil;
-import com.veganchen.advancedui.util.CommonConfig;
+import com.veganchen.advancedui.sdk.util.CandyUtil;
+import com.veganchen.advancedui.sdk.util.CommonConfig;
 
 public class DownloadActivity extends AppCompatActivity implements View.OnClickListener {
 

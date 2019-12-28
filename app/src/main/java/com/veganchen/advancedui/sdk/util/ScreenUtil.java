@@ -1,4 +1,4 @@
-package com.veganchen.advancedui.util;
+package com.veganchen.advancedui.sdk.util;
 
 public class ScreenUtil {
 

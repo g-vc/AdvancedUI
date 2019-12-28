@@ -43,6 +43,7 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initLayoutTransition(){
         mTransitioner = new LayoutTransition();
+        mTransitioner.setDuration(2000);
 //        /**
 //         * 添加View时过渡动画效果
 //         */
@@ -82,29 +83,29 @@ public class GridActivity extends AppCompatActivity implements View.OnClickListe
                 PropertyValuesHolder.ofInt("bottom", 0, 0);
 
 
-//        /**
-//         * view被添加时,其他子View的过渡动画效果
-//         */
-//        PropertyValuesHolder animator = PropertyValuesHolder.ofFloat("alpha", 0, 1);
-//        final ObjectAnimator changeIn = ObjectAnimator.ofPropertyValuesHolder(
-//                this, pvhLeft,  pvhBottom, animator).
-//                setDuration(mTransitioner.getDuration(LayoutTransition.CHANGE_APPEARING));
-//
-//        mTransitioner.setAnimator(LayoutTransition.CHANGE_APPEARING, changeIn);
+        /**
+         * view被添加时,其他子View的过渡动画效果
+         */
+        PropertyValuesHolder animator = PropertyValuesHolder.ofFloat("alpha", 0, 1);
+        final ObjectAnimator changeIn = ObjectAnimator.ofPropertyValuesHolder(
+                this, pvhLeft,  pvhBottom, animator).
+                setDuration(mTransitioner.getDuration(LayoutTransition.CHANGE_APPEARING));
+
+        mTransitioner.setAnimator(LayoutTransition.CHANGE_APPEARING, changeIn);
 //
 //
         /**
          * view移除时，其他子View的过渡动画
          */
-//        PropertyValuesHolder pvhRotation =
-//                PropertyValuesHolder.ofFloat("alpha", 0, 1);
-//        final ObjectAnimator changeOut = ObjectAnimator.ofPropertyValuesHolder(
-//                this, pvhLeft, pvhBottom, pvhRotation).
-//                setDuration(mTransitioner.getDuration(LayoutTransition.CHANGE_DISAPPEARING));
+        PropertyValuesHolder pvhRotation =
+                PropertyValuesHolder.ofFloat("scaleX", 0, 1);
+        final ObjectAnimator changeOut = ObjectAnimator.ofPropertyValuesHolder(
+                this, pvhTop, pvhBottom, pvhRotation).
+                setDuration(mTransitioner.getDuration(LayoutTransition.CHANGE_DISAPPEARING));
 //
-//        mTransitioner.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, changeOut);
+        mTransitioner.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, changeOut);
 
-//        mTransitioner.setAnimator(LayoutTransition.CHANGING, changeOut);
+        mTransitioner.setAnimator(LayoutTransition.CHANGING, changeOut);
     }
 
     private void initView() {

@@ -3,7 +3,7 @@ package com.veganchen.advancedui.download;
 import android.util.ArrayMap;
 
 import com.veganchen.advancedui.download.inter.DownloadCallback;
-import com.veganchen.advancedui.net.OkHttpManager;
+import com.veganchen.advancedui.sdk.net.OkHttpManager;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Map;
 
-import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;

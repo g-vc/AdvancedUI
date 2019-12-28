@@ -1,4 +1,4 @@
-package com.veganchen.advancedui.net;
+package com.veganchen.advancedui.sdk.net;
 
 import okhttp3.OkHttpClient;
 
